@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Mis mascotas{% endblock %}
+
+{% block content %}
+<h1>🐾 Lista de mascotas</h1>
+
+{% if mascotas %}
+    <p>¡Tenemos {{ mascotas|length }} mascotas!</p>
+    <ul>
+    {% for mascota in mascotas %}
+        <li><strong>{{ mascota.nombre }}</strong> — {{ mascota.tipo }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay mascotas registradas aún.</p>
+{% endif %}
+
+{% endblock %}
