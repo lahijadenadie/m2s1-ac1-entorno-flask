@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{% block titulo %}Mi Proyecto Flask{% endblock %}</title>
-</head>
-<body>
-    <nav>
-        <a href="/">Inicio</a> |
-        <a href="/about">Acerca del proyecto</a>
-    </nav>
-    <hr>
-    {% block contenido %}{% endblock %}
-</body>
-</html>
+<a href="/">Inicio</a> |
+<a href="/contacto">Contacto</a> |
+<a href="/usuarios">Usuarios</a> |
+
+{% if current_user.is_authenticated %}
+    <a href="{{ url_for('perfil') }}">Mi perfil</a>
+{% else %}
+    <a href="{{ url_for('login') }}">Iniciar sesión</a>
+{% endif %}

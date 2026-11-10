@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Usuarios{% endblock %}
+
+{% block content %}
+<h1>Usuarios registrados</h1>
+
+{% if usuarios %}
+<table>
+  <tr>
+    <th>#</th>
+    <th>Nombre</th>
+    <th>Correo</th>
+  </tr>
+  {% for u in usuarios %}
+  <tr>
+    <td>{{ u.id }}</td>
+    <td>{{ u.nombre }}</td>
+    <td>{{ u.correo }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>No hay usuarios registrados todavía.</p>
+{% endif %}
+{% endblock %}

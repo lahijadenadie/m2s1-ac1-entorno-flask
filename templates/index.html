@@ -1,24 +1,14 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
-{% block titulo %}Inicio{% endblock %}
+{% block title %}Inicio{% endblock %}
 
-{% block contenido %}
+{% block content %}
 <h1>Página de Inicio</h1>
-<p>Bienvenido al proyecto Flask</p>
+<p>Bienvenido al proyecto de la Práctica 7</p>
 
-<h2>Lista de mascotas</h2>
-<p>Total de mascotas: {{ mascotas|length }}</p>
-
-<ul>
-{% for mascota in mascotas %}
-    <li>{{ mascota.nombre }} - {{ mascota.tipo }}</li>
-{% endfor %}
-</ul>
-
-{% if mascotas|length > 2 %}
-    <p>Hay más de dos mascotas registradas</p>
-{% else %}
-    <p>Hay pocas mascotas registradas</p>
-{% endif %}
-
+<p>
+  <a href="/contacto">Ir al formulario de registro</a>
+  <br>
+  <a href="/usuarios">Ver lista de usuarios</a>
+</p>
 {% endblock %}
