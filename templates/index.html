@@ -5,4 +5,20 @@
 {% block contenido %}
 <h1>Página de Inicio</h1>
 <p>Bienvenido al proyecto Flask</p>
+
+<h2>Lista de mascotas</h2>
+<p>Total de mascotas: {{ mascotas|length }}</p>
+
+<ul>
+{% for mascota in mascotas %}
+    <li>{{ mascota.nombre }} - {{ mascota.tipo }}</li>
+{% endfor %}
+</ul>
+
+{% if mascotas|length > 2 %}
+    <p>Hay más de dos mascotas registradas</p>
+{% else %}
+    <p>Hay pocas mascotas registradas</p>
+{% endif %}
+
 {% endblock %}

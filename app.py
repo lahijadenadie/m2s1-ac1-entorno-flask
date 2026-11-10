@@ -3,49 +3,44 @@ from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from forms import ContactoForm
 
-# Inicializar la aplicación (PRIMERO esto, antes de cualquier ruta)
+# PRIMERO se crea la variable app
 app = Flask(__name__)
-app.config['SECRET_KEY'] = "mi_clave_secreta_123"
-
-# Configuración Base de Datos SQLite
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///proyecto.db"
+app.config['SECRET_KEY'] = 'clave_secreta_para_pruebas'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///proyecto.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-# Cargar Bootstrap y Base de Datos
 bootstrap = Bootstrap(app)
 db = SQLAlchemy(app)
 
-# Modelo: Tabla Usuario
+# Modelo Usuario
 class Usuario(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(80), nullable=False)
     correo = db.Column(db.String(120), unique=True, nullable=False)
 
-# Crear la tabla en la base de datos
-with app.app_context():
-    db.create_all()
-
-# Ruta principal (formulario)
+# Ruta principal con la lista de mascotas (Práctica 6)
 @app.route('/', methods=['GET', 'POST'])
 def index():
     form = ContactoForm()
+    mascotas = [
+        {"nombre": "Luna", "tipo": "Perro"},
+        {"nombre": "Milo", "tipo": "Gato"},
+        {"nombre": "Nemo", "tipo": "Pez"}
+    ]
     if form.validate_on_submit():
-        nombre = form.nombre.data
-        correo = form.correo.data
-        flash(f'¡Registro exitoso! Hola {nombre}', 'success')
-        return redirect(url_for('respuesta', nombre=nombre, correo=correo))
-    return render_template('index.html', form=form)
+        nuevo_usuario = Usuario(nombre=form.nombre.data, correo=form.correo.data)
+        db.session.add(nuevo_usuario)
+        db.session.commit()
+        flash('Registro exitoso', 'success')
+        return redirect(url_for('index'))
+    return render_template('index.html', form=form, mascotas=mascotas)
 
-# Ruta de respuesta
-@app.route('/respuesta/<nombre>/<correo>')
-def respuesta(nombre, correo):
-    return render_template('respuesta.html', nombre=nombre, correo=correo)
-
-# ✅ Ruta Acerca del proyecto (en el lugar correcto)
+# Ruta Acerca
 @app.route('/about')
 def about():
     return render_template('about.html')
 
-# Ejecutar la aplicación
 if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)
