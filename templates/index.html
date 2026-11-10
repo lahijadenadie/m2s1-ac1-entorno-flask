@@ -1,21 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Formulario de Contacto</title>
-</head>
-<body>
-    <h1>Contacto</h1>
-    <form method="POST">
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.nombre.label }}<br>
-            {{ form.nombre() }}
-        </p>
-        <p>
-            {{ form.correo.label }}<br>
-            {{ form.correo() }}
-        </p>
-        <p>{{ form.enviar() }}</p>
-    </form>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block page_content %}
+<h1>Contacto</h1>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        {{ form.nombre.label }}
+        {{ form.nombre(class="form-control") }}
+    </div>
+    <div class="form-group">
+        {{ form.correo.label }}
+        {{ form.correo(class="form-control") }}
+    </div>
+    {{ form.enviar(class="btn btn-primary") }}
+</form>
+{% endblock %}

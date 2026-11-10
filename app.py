@@ -1,8 +1,10 @@
 from flask import Flask, render_template, redirect, url_for
+from flask_bootstrap import Bootstrap
 from forms import ContactoForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "mi_clave_secreta_12345"
+bootstrap = Bootstrap(app)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():

@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Confirmación</title>
-</head>
-<body>
-    <h1>¡Gracias {{ nombre }}!</h1>
-    <p>Tu correo registrado: {{ correo }}</p>
-    <a href="/">Volver</a>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block page_content %}
+<div class="panel panel‑default">
+    <div class="panel‑body">
+        <h1>¡Gracias {{ nombre }}!</h1>
+        <p>Tu correo registrado: {{ correo }}</p>
+        <a href="/" class="btn btn‑primary">Volver</a>
+    </div>
+</div>
+{% endblock %}
