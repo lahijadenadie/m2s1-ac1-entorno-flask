@@ -1,17 +1,8 @@
 {% extends "base.html" %}
 
-{% block page_content %}
-<h1>Contacto</h1>
-<form method="POST">
-    {{ form.hidden_tag() }}
-    <div class="form-group">
-        {{ form.nombre.label }}
-        {{ form.nombre(class="form-control") }}
-    </div>
-    <div class="form-group">
-        {{ form.correo.label }}
-        {{ form.correo(class="form-control") }}
-    </div>
-    {{ form.enviar(class="btn btn-primary") }}
-</form>
+{% block titulo %}Inicio{% endblock %}
+
+{% block contenido %}
+<h1>Página de Inicio</h1>
+<p>Bienvenido al proyecto Flask</p>
 {% endblock %}

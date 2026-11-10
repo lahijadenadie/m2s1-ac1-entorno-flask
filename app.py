@@ -3,7 +3,7 @@ from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from forms import ContactoForm
 
-# Inicializar app
+# Inicializar la aplicación (PRIMERO esto, antes de cualquier ruta)
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "mi_clave_secreta_123"
 
@@ -40,6 +40,11 @@ def index():
 @app.route('/respuesta/<nombre>/<correo>')
 def respuesta(nombre, correo):
     return render_template('respuesta.html', nombre=nombre, correo=correo)
+
+# ✅ Ruta Acerca del proyecto (en el lugar correcto)
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
 # Ejecutar la aplicación
 if __name__ == '__main__':

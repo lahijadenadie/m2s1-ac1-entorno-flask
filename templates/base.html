@@ -1,23 +1,14 @@
-{% extends "bootstrap/base.html" %}
-
-{% block title %}Contacto{% endblock %}
-
-{% block navbar %}
-<nav class="navbar navbar-inverse">
-    <div class="container">
-        <a class="navbar-brand" href="/">Mi Proyecto AC2</a>
-    </div>
-</nav>
-{% endblock %}
-
-{% block content %}
-<div class="container">
-    {% for message in get_flashed_messages(with_categories=true) %}
-    <div class="alert alert-{{ message[0] }} alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        {{ message[1] }}
-    </div>
-    {% endfor %}
-    {% block page_content %}{% endblock %}
-</div>
-{% endblock %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block titulo %}Mi Proyecto Flask{% endblock %}</title>
+</head>
+<body>
+    <nav>
+        <a href="/">Inicio</a> |
+        <a href="/about">Acerca del proyecto</a>
+    </nav>
+    <hr>
+    {% block contenido %}{% endblock %}
+</body>
+</html>
