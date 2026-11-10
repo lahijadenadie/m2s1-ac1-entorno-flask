@@ -1,8 +1,21 @@
-{% extends 'base.html' %}
-
-{% block title %}Inicio{% endblock %}
-
-{% block content %}
-    <h1>Página de inicio</h1>
-    <p>¡Hola desde una plantilla!</p>
-{% endblock %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulario de Contacto</title>
+</head>
+<body>
+    <h1>Contacto</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.nombre.label }}<br>
+            {{ form.nombre() }}
+        </p>
+        <p>
+            {{ form.correo.label }}<br>
+            {{ form.correo() }}
+        </p>
+        <p>{{ form.enviar() }}</p>
+    </form>
+</body>
+</html>

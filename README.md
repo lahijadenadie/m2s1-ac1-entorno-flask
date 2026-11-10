@@ -9,4 +9,4 @@ Proyecto de práctica con el framework Flask para crear una aplicación web bás
 1. Clonar el repositorio
 ```bash
 git clone https://github.com/lahijadenadie/m2s1-ac1-entorno-flask.git
-cd m2s1-ac1-entorno-flask
+cd m2s1-ac1-entorno-flask   

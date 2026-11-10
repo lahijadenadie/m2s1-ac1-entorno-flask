@@ -1,17 +1,11 @@
-{% extends 'base.html' %}
-
-{% block title %}Formulario{% endblock %}
-
-{% block content %}
-<h1>📝 Envíame un mensaje</h1>
-
-<form method="POST" action="">
-    <label for="nombre">Tu nombre:</label><br>
-    <input type="text" id="nombre" name="nombre" required><br><br>
-
-    <label for="mensaje">Tu mensaje:</label><br>
-    <textarea id="mensaje" name="mensaje" rows="5" required></textarea><br><br>
-
-    <button type="submit">Enviar ✉️</button>
-</form>
-{% endblock %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confirmación</title>
+</head>
+<body>
+    <h1>¡Gracias {{ nombre }}!</h1>
+    <p>Tu correo registrado: {{ correo }}</p>
+    <a href="/">Volver</a>
+</body>
+</html>

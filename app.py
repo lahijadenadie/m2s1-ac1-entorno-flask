@@ -1,25 +1,17 @@
-import os
-from dotenv import load_dotenv
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
+from forms import ContactoForm
 
-load_dotenv()
-
-# PRIMERO creamos la app (MUY IMPORTANTE que vaya aquí)
 app = Flask(__name__)
-app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
+app.config['SECRET_KEY'] = "mi_clave_secreta_12345"
 
-
-# Ruta Inicio
-@app.route("/")
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template("index.html")
+    form = ContactoForm()
+    if form.validate_on_submit():
+        nombre = form.nombre.data
+        correo = form.correo.data
+        return render_template('respuesta.html', nombre=nombre, correo=correo)
+    return render_template('index.html', form=form)
 
-
-# Ruta About (DESPUÉS de crear "app")
-@app.route("/about")
-def about():
-    return render_template("about.html", proyecto="Mi primer app Flask")
-
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(debug=True)
